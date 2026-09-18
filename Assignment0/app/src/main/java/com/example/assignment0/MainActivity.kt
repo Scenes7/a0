@@ -42,30 +42,28 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-fun flipCoin() : String {
+fun decision1() : String {
     val flip = (1..2).random()
     if (flip == 1) {
-        return "The coin is Heads"
+        return "yes, you should go to that restaurant"
     }
-    return "The coin is Tails"
+    return "no, you shouldn't go to that restaurant"
 }
 
-fun rollDice() : String {
-    val dice = (1..6).random()
-    return "The dice rolled a $dice"
+fun decision2() : String {
+    val flip = (1..4).random()
+    if (flip == 1) {
+        return "yes, you should go to that restaurant"
+    }
+    return "no, you shouldn't go to that restaurant"
 }
 
-fun roulette() : String {
-    val result = (1..36).random()
-    var color = ""
-    if (result == 0) {
-        color = "Green"
-    } else if (result%2 == 1) {
-        color = "Red"
-    } else {
-        color = "Black"
+fun decision3() : String {
+    val flip = (1..6).random()
+    if (flip == 1) {
+        return "yes, you should go to that restaurant"
     }
-    return "The result is: $result $color"
+    return "no, you shouldn't go to that restaurant"
 }
 
 @Composable
@@ -73,7 +71,7 @@ fun homeScreen(
     modifier: Modifier = Modifier
 ) {
     var homeText by remember {mutableStateOf("")}
-
+    Text("Student ID: 1825571\nCCID: siquan1")
     Column (
         modifier = Modifier.fillMaxSize()
     ) {
@@ -90,41 +88,41 @@ fun homeScreen(
                 Text(homeText, fontSize=40.sp)
             }
         }
-        Row(
+        Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
+//            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
         ) {
             var count1 by remember {mutableStateOf(0)}
             var count2 by remember {mutableStateOf(0)}
             var count3 by remember {mutableStateOf(0)}
             Button (
                 onClick = {
-                    homeText = flipCoin()
+                    homeText = decision1()
                     count1++
                 }
             ) {
                 Text(
-                    text = "Flip Coin, Clicked: $count1",
+                    text = "Go to McDonald's? Clicked: $count1",
                 )
             }
             Button (
                 onClick = {
-                    homeText = rollDice()
+                    homeText = decision2()
                     count2++
                 }
             ) {
                 Text(
-                    text = "Roll Dice, Clicked: $count2",
+                    text = "Go to Burger King? Clicked: $count2",
                 )
             }
             Button (
                 onClick = {
-                    homeText = roulette()
+                    homeText = decision3()
                     count3++
                 }
             ) {
                 Text(
-                    text = "Play Roulette, Clicked: $count3",
+                    text = "Go to Tim Hortons? Clicked: $count3",
                 )
             }
         }
